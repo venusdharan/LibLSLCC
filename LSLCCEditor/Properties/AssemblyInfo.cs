@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("LSLCCEditor")]
-[assembly: AssemblyCopyright("Eric A. Blundell")]
+[assembly: AssemblyCopyright("Eric A. Blundell (Eric Quine)")]
 [assembly: AssemblyTrademark("Neigh")]
 [assembly: AssemblyCulture("")]
 
