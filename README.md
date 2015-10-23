@@ -19,11 +19,11 @@ made the code public
  
 See: 
  
-        https://github.com/EriHoss/OpenSim_0.8.2.0_Dev_LibLSLCC 
+        https://github.com/EriHoss/OpenSim_With_LibLSLCC 
  
         Or 
          
-        https://gitlab.com/erihoss/OpenSim_0.8.2.0_Dev_LibLSLCC 
+        https://gitlab.com/erihoss/OpenSim_With_LibLSLCC 
          
  
          
