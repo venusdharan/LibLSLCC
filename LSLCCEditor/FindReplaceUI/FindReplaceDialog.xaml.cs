@@ -44,10 +44,11 @@
 
 using System.Windows;
 using System.Windows.Input;
+using LSLCCEditor.FindReplaceUI;
 
 #endregion
 
-namespace LSLCCEditor.FindReplace
+namespace LSLCCEditor.FindReplaceUI
 {
     /// <summary>
     ///     Interaction logic for FindReplaceDialog.xaml
