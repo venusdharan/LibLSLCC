@@ -46,7 +46,7 @@ using System.Windows;
 
 #endregion
 
-namespace LSLCCEditor.Converters
+namespace LSLCCEditor.Utility.Converters
 {
     public sealed class BooleanToVisibilityConverter : BooleanConverter<Visibility>
     {

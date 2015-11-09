@@ -1,6 +1,6 @@
 ﻿#region FileInfo
 // 
-// File: BooleanConverter.cs
+// File: InverseBooleanConverter.cs
 // 
 // 
 // ============================================================
@@ -43,33 +43,34 @@
 #region Imports
 
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Windows.Data;
 
 #endregion
 
-namespace LSLCCEditor.Converters
+namespace LSLCCEditor.Utility.Converters
 {
-    public class BooleanConverter<T> : IValueConverter
+    [ValueConversion(typeof (bool), typeof (bool))]
+    public class InverseBooleanConverter : IValueConverter
     {
-        public BooleanConverter(T trueValue, T falseValue)
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter,
+            CultureInfo culture)
         {
-            True = trueValue;
-            False = falseValue;
+            if (targetType != typeof (bool))
+                throw new InvalidOperationException("The target must be a boolean");
+
+            return !(bool) value;
         }
 
-        public T True { get; set; }
-        public T False { get; set; }
 
-        public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter,
+            CultureInfo culture)
         {
-            return value is bool && ((bool) value) ? True : False;
+            throw new NotSupportedException();
         }
 
-        public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value is T && EqualityComparer<T>.Default.Equals((T) value, True);
-        }
+        #endregion
     }
 }
