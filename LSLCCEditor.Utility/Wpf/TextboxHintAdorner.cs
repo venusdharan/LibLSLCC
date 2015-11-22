@@ -1,6 +1,6 @@
-#region FileInfo
+﻿#region FileInfo
 // 
-// File: CSharpCompilerSingleton.cs
+// File: TextboxHintAdorner.cs
 // 
 // 
 // ============================================================
@@ -40,12 +40,64 @@
 // 
 // 
 #endregion
-using System.CodeDom.Compiler;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using System.Windows.Media;
 
-namespace LibLSLCC.CSharp
+namespace LSLCCEditor.Utility.Wpf
 {
-    static class CSharpCompilerSingleton
+    internal class TextboxHintAdorner : Adorner
     {
-        public static readonly CodeDomProvider Compiler = CodeDomProvider.CreateProvider("CSharp");
+
+        private readonly ContentPresenter _contentPresenter;
+
+        public TextboxHintAdorner(UIElement adornedElement, object watermark) :
+            base(adornedElement)
+        {
+            IsHitTestVisible = false;
+
+            _contentPresenter = new ContentPresenter();
+            _contentPresenter.Content = watermark;
+            _contentPresenter.Opacity = 0.5;
+            _contentPresenter.Margin = new Thickness(Control.Margin.Left + Control.Padding.Left, Control.Margin.Top + Control.Padding.Top, 0, 0);
+
+            System.Windows.Data.Binding binding = new System.Windows.Data.Binding("IsVisible");
+            binding.Source = adornedElement;
+            binding.Converter = new BooleanToVisibilityConverter();
+            SetBinding(VisibilityProperty, binding);
+        }
+
+
+        protected override int VisualChildrenCount
+        {
+            get { return 1; }
+        }
+
+        private Control Control
+        {
+            get { return (Control)AdornedElement; }
+        }
+
+
+
+        protected override Visual GetVisualChild(int index)
+        {
+            return _contentPresenter;
+        }
+
+
+        protected override Size MeasureOverride(Size constraint)
+        {
+            _contentPresenter.Measure(Control.RenderSize);
+            return Control.RenderSize;
+        }
+
+
+        protected override Size ArrangeOverride(Size finalSize)
+        {
+            _contentPresenter.Arrange(new Rect(finalSize));
+            return finalSize;
+        }
     }
 }

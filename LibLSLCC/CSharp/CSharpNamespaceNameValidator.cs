@@ -40,7 +40,6 @@
 // 
 // 
 #endregion
-
 using System.Text.RegularExpressions;
 
 namespace LibLSLCC.CSharp
