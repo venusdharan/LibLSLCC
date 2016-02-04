@@ -53,12 +53,12 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("lslcc")]
-[assembly: AssemblyDescription("LSL To OpenSim CSharp Compiler")]
+[assembly: AssemblyDescription("LSL to OpenSim CSharp compiler.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("lslcc")]
-[assembly: AssemblyCopyright("Eric A. Blundell, 2014")]
-[assembly: AssemblyTrademark("Neigh")]
+[assembly: AssemblyCopyright("Eric A. Blundell ©  2014")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 

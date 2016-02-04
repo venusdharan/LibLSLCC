@@ -53,12 +53,12 @@ using System.Windows;
 // associated with an assembly.
 
 [assembly: AssemblyTitle("LSLCCEditor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("LSL editor/IDE.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("LSLCCEditor")]
-[assembly: AssemblyCopyright("Eric A. Blundell (Eric Quine)")]
-[assembly: AssemblyTrademark("Neigh")]
+[assembly: AssemblyCopyright("Eric A. Blundell ©  2014")]
+[assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
