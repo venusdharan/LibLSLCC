@@ -1,14 +1,13 @@
 ﻿#region FileInfo
-
 // 
-// File: ILSLCodeScopeNode.cs
+// File: LSLStatementNodeTools.cs
 // 
 // 
 // ============================================================
 // ============================================================
 // 
 // 
-// Copyright (c) 2015, Eric A. Blundell
+// Copyright (c) 2016, Eric A. Blundell
 // 
 // All rights reserved.
 // 
@@ -40,44 +39,20 @@
 // ============================================================
 // 
 // 
-
 #endregion
-
-#region Imports
-
-using System.Collections.Generic;
-
-#endregion
-
 namespace LibLSLCC.CodeValidator
 {
-    /// <summary>
-    ///     AST node interface for code scopes.
-    ///     Includes function, event handler, control/loop statement code body's, and anonymous code scopes.
-    /// </summary>
-    public interface ILSLCodeScopeNode : ILSLReadOnlyCodeStatement
+    internal static class LSLStatementNodeTools
     {
-        /// <summary>
-        ///     Code statements that are children of this code scope, this will never be <c>null</c> but it may be empty.
-        /// </summary>
-        /// <seealso cref="HasCodeStatements" />
-        IEnumerable<ILSLReadOnlyCodeStatement> CodeStatements { get; }
+        public static void CopyStatement(ILSLCodeStatement to, ILSLCodeStatement from)
+        {
+            to.IsLastStatementInScope = from.IsLastStatementInScope;
+            to.InsideSingleStatementScope = from.InsideSingleStatementScope;
 
-        /// <summary>
-        ///     True if this code scope contains any code statements.
-        /// </summary>
-        bool HasCodeStatements { get; }
-
-        /// <summary>
-        ///     True if this code scope is an implicit braceless code scope.
-        ///     Bracless code scopes can only occur as the code body in loop type constructs and control statements.
-        /// </summary>
-        /// <seealso cref="ILSLReadOnlyCodeStatement.InsideSingleStatementScope" />
-        bool IsSingleStatementScope { get; }
-
-        /// <summary>
-        ///     The type of code scope this node represents.
-        /// </summary>
-        LSLCodeScopeType CodeScopeType { get; }
+            to.IsDeadCode = from.IsDeadCode;
+            to.DeadCodeType = from.DeadCodeType;
+            to.StatementIndex = from.StatementIndex;
+            to.ScopeId = from.ScopeId;
+        }
     }
 }
