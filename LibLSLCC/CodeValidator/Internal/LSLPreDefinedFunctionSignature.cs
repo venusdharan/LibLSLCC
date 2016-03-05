@@ -45,6 +45,7 @@
 
 #region Imports
 
+using System;
 using System.Linq;
 
 #endregion
@@ -54,7 +55,7 @@ namespace LibLSLCC.CodeValidator
     /// <summary>
     ///     Represents a function signature that was parsed during the pre-pass that occurs during code validation.
     /// </summary>
-    public sealed class LSLPreDefinedFunctionSignature : LSLFunctionSignature
+    internal sealed class LSLPreDefinedFunctionSignature : LSLFunctionSignature
     {
         /// <summary>
         ///     Construct an <see cref="LSLPreDefinedFunctionSignature" /> from an <see cref="LSLType" /> representing the return
@@ -67,10 +68,20 @@ namespace LibLSLCC.CodeValidator
         ///     The <see cref="LSLParameterListNode" /> from an LSL syntax tree that represents the function
         ///     signatures parameters.
         /// </param>
+        /// <exception cref="ArgumentNullException"><paramref name="parameters"/> is <see langword="null" />.</exception>
+        /// <exception cref="LSLInvalidSymbolNameException">
+        ///     Thrown if the function name does not follow LSL symbol naming conventions.
+        /// </exception>
         public LSLPreDefinedFunctionSignature(LSLType returnType, string name, LSLParameterListNode parameters)
-            : base(returnType, name, parameters.Parameters.Select(x => new LSLParameterSignature(x.Type, x.Name, false)))
+            : base(returnType, name)
         {
-            //TODO validate parameters
+            if (parameters == null) throw new ArgumentNullException("parameters");
+
+            foreach (var param in parameters)
+            {
+                AddParameter(param.CreateSignature());
+            }
+
             ParameterListNode = parameters;
         }
 

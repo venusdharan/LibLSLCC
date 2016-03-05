@@ -56,7 +56,7 @@ namespace LibLSLCC.CodeValidator
     ///     This object derives from <see cref="LSLEventSignature" /> and adds an <see cref="LSLParameterListNode" />
     ///     property that contains a parameter list node from the syntax tree.
     /// </summary>
-    public sealed class LSLParsedEventHandlerSignature : LSLEventSignature
+    internal sealed class LSLParsedEventHandlerSignature : LSLEventSignature
     {
         /// <summary>
         ///     Construct an  <see cref="LSLParsedEventHandlerSignature" /> from an event handler name and a
